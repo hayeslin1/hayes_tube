@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hayes.hayes_tube.dao.AnimeMapper">
+
+    <resultMap id="filmInfoResultMap" type="com.hayes.hayes_tube.entity.FilmInfo">
+        <result property="filmName" jdbcType="VARCHAR" column="film_name" />
+        <result property="filmPic" jdbcType="VARCHAR" column="film_pic" />
+        <result property="filmUrl" jdbcType="VARCHAR" column="film_url" />
+        <result property="filmNr" jdbcType="VARCHAR" column="film_nr" />
+        <result property="filmAlias" jdbcType="VARCHAR" column="film_alias" />
+        <result property="filmNotes" jdbcType="VARCHAR" column="film_notes" />
+        <result property="filmStars" jdbcType="VARCHAR" column="film_stars" />
+        <result property="filmDirector" jdbcType="VARCHAR" column="film_director" />
+        <result property="filmColumn" jdbcType="VARCHAR" column="film_column" />
+        <result property="filmType" jdbcType="VARCHAR" column="film_type" />
+        <result property="filmLanguage" jdbcType="VARCHAR" column="film_language" />
+        <result property="filmArea" jdbcType="VARCHAR" column="film_area" />
+        <result property="filmStatus" jdbcType="VARCHAR" column="film_status" />
+        <result property="filmReleaseYear" jdbcType="VARCHAR" column="film_release_year" />
+        <result property="filmUpdateTime" jdbcType="VARCHAR" column="film_update_time" />
+        <result property="filmScore" jdbcType="VARCHAR" column="film_score" />
+    </resultMap>
+
+    <select id="getAllTop10" resultMap="filmInfoResultMap">
+        select * from t_anime where  film_release_year not like '%未知%' order by  uuid desc  ,  film_update_time desc  limit 12
+    </select>
+
+    <select id="getFilmByUUid" resultMap="filmInfoResultMap" parameterType="string">
+        select * from t_anime where uuid = #{uuid}
+    </select>
+
+    <select id="getBof" resultMap="filmInfoResultMap" parameterType="string">
+        select * from t_movies_url where uuid = #{uuid}
+    </select>
+
+    <select id="getTop10ByColumn" resultMap="filmInfoResultMap" parameterType="string">
+        select * from t_anime where film_column like  #{column}   ORDER BY uuid desc ,film_release_year desc , film_update_time desc , film_score desc limit 12
+    </select>
+
+    <select id="getAllByColumn" resultMap="filmInfoResultMap" >
+        select * from t_anime where film_column like  #{column}   ORDER BY uuid desc  ,  film_update_time desc , film_score desc limit #{page_start}, 20
+    </select>
+    <select id="getAllCountByColumn" resultType="int">
+        select count(1) from t_anime where film_column like  #{column}
+    </select>
+    <select id="searchFilmCount" resultType="int" >
+        select count(1) from (select * from t_anime where film_name like #{want}
+        UNION select * from t_anime where film_stars like #{want}
+        UNION select * from t_anime where film_director like #{want}
+        UNION select * from t_anime where film_alias like #{want}
+        ) tmp order by film_release_year  desc
+    </select>
+    
+    <select id="searchFilm" resultMap="filmInfoResultMap" >
+        select * from ( select * from (
+              select * from t_anime where film_name like #{want}
+        UNION select * from t_anime where film_stars like #{want}
+        UNION select * from t_anime where film_director like #{want}
+        UNION select * from t_anime where film_alias like #{want}
+        ) tmp order by film_release_year  desc ) tttt
+        limit #{page_start}, 20
+    </select>
+    
+</mapper>

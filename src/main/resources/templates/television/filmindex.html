@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<title th:text="'Hayes影院@'+${filmInfo.filmName}"></title>
+<head th:include="film/include :: header"/>
+<body style="overflow-x: hidden;">
+<div th:replace="film/include :: navigation_bar" ></div>
+<div class="bady1">
+    <div id="content" style="position: relative;">
+        <input type="hidden" th:value="'/television/getBof/'+${filmInfo.uuid}" id ="uuid"/>
+        <input type="hidden" value="/television/watchVideo" id ="watchVideo"/>
+        <input type="hidden" th:value="${filmInfo.filmName}" id ="film_name"/>
+        <div class="model">
+            <div class="title">正在播放: <span th:text="${filmInfo.filmName}" class="item_film_name"></span><span id="which"></span></div>
+            <div id = "video"> <iframe scrolling="no" frameborder="0" allowfullscreen="0" width="100%" height="100%" src=""></iframe> </div>
+            <div class="film_url">
+                <span><i class="layui-icon" style="font-size: 20px; color: #1E9FFF;margin-left: 20px;">&#xe66b;</i></span>
+                <span style="font-size: large;font-weight: bold;">播放源: </span>
+                <hr class="layui-bg-orange"/>
+                <ul id="bof"></ul>
+            </div>
+        </div>
+        <div class="film_info">
+            <div class="title"><span>视频信息: </span></div>
+            <ul>
+            <li th:text="${filmInfo.filmAlias}" class="item_film_alias"></li>
+            <li th:text="${filmInfo.filmStars}" class="item_film_stars"></li>
+            <li th:text="${filmInfo.filmDirector}" class="item_film_director"></li>
+            <li><div class="left" th:text="${filmInfo.filmColumn}"></div><div class="right" th:text="${filmInfo.filmType}"></div></li>
+            <li><div class="left" th:text="${filmInfo.filmLanguage}"></div><div class="right" th:text="${filmInfo.filmArea}"></div></li>
+            <li><div class="left" th:text="${filmInfo.filmStatus}"></div><div class="right" th:text="${filmInfo.filmReleaseYear}"></div></li>
+            <li><div class="left" th:text="${filmInfo.filmScore}"></div><div class="right" th:text="${filmInfo.filmUpdateTime}"></div></li>
+            </ul>
+        </div>
+        <div class="baseinfo">
+            <div  class="title"><span>视频简介: </span></div>
+            <ul><li th:text="${filmInfo.filmNr}" class="item_film_nr"></li></ul>
+        </div>
+
+    </div>
+</div>
+<div th:replace="film/include :: bottom"></div>
+<div th:replace="film/include :: footer"></div>
+<script src="/film/js/filmindex.js" th:src="@{/film/js/filmindex.js}"></script>
+</body>
+</html>

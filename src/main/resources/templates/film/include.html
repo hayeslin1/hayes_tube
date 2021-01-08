@@ -1,0 +1,99 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="header">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+    <link rel="stylesheet" href="/layui-2.4.5/css/layui.css" th:href="@{/layui-2.4.5/css/layui.css}"  media="all"/>
+    <link rel="stylesheet" href="/lib/css/stylesheet.css" th:href="@{/lib/css/stylesheet.css}"  media="all"/>
+    <link rel="shortcut icon" href="/lib/images/favicon.ico" />
+    <link rel="stylesheet" href="/film/css/index.css" th:href="@{/film/css/index.css}"  media="screen and (min-width: 960px)"/>
+    <link rel="stylesheet" href="/film/css/page.css" th:href="@{/film/css/page.css}" />
+    <link rel="stylesheet" href="/film/css/index-mobile.css" th:href="@{/film/css/index-mobile.css}"  media="screen and (max-width: 960px)"/>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+</head>
+<div th:fragment="navigation_bar" id="navigation_bar">
+    <div class="navigation_bar_title">
+        <h1><a href="/"><img src="/film/img/logo_hayes.png" th:src="@{/film/img/logo_hayes.png}" style="height: 50px;position: absolute;top: 0;"/></a></h1>
+        <form action="/search" method="post" class="nav_bar search-form" >
+            <input type="text" name="wd" required="required" class="input-search-text" placeholder="请输入关键字"/>
+            <input type="submit" value="搜索🔍" class="input-search-submit"/>
+        </form>
+    </div>
+    <div class="navigation_bar_div">
+        <ul class="nav_bar_ul">
+            <li><a href="/">首页</a></li>
+            <li>
+                <a href="/film/index">电影</a>
+                <ul>
+                    <li><a href="/film/column/dz">动作片</a></li>
+                    <li><a href="/film/column/xj">喜剧片</a></li>
+                    <li><a href="/film/column/jq">剧情片</a></li>
+                    <li><a href="/film/column/kb">恐怖片</a></li>
+                    <li><a href="/film/column/aq">爱情片</a></li>
+                    <li><a href="/film/column/kh">科幻片</a></li>
+                    <li><a href="/film/column/zz">战争片</a></li>
+                </ul>
+            </li><li>
+                <a href="/television/index">电视</a>
+                <ul>
+                    <li><a href="/television/column/gc">国产剧</a></li>
+                    <li><a href="/television/column/xg">香港剧</a></li>
+                    <li><a href="/television/column/hg">韩国剧</a></li>
+                    <li><a href="/television/column/om">欧美剧</a></li>
+                    <li><a href="/television/column/tw">台湾剧</a></li>
+                    <li><a href="/television/column/rb">日本剧</a></li>
+                    <li><a href="/television/column/hw">海外剧</a></li>
+                </ul>
+            </li><li>
+                <a href="/media/index">综艺</a>
+                <ul>
+                    <li><a href="/media/column/ndzy">内地综艺</a></li>
+                    <li><a href="/media/column/gtzy">港台综艺</a></li>
+                    <li><a href="/media/column/rhzy">日韩综艺</a></li>
+                    <li><a href="/media/column/omzy">欧美综艺</a></li>
+                </ul>
+            </li><li>
+                <a href="/anime/index">动漫</a>
+                <ul>
+                    <li><a href="/anime/column/gcdm">国产动漫</a></li>
+                    <li><a href="/anime/column/rhdm">日韩动漫</a></li>
+                    <li><a href="/anime/column/omdm">欧美动漫</a></li>
+                    <li><a href="/anime/column/gtdm">港台动漫</a></li>
+                    <li><a href="/anime/column/hwdm">海外动漫</a></li>
+                </ul>
+            </li>
+            <li><a href="/about/sayHi">留言</a></li>
+
+        </ul>
+
+    </div>
+</div>
+
+<div  th:fragment="film-info">
+    <div th:if="${#strings.substring(film.filmScore,5)} ne '0'" class="film_score" th:text="${#strings.substring(film.filmScore,5)}"></div>
+    <div th:if="${#strings.endsWith(film.filmColumn, '伦理片')}" class="film_vip">VIP</div>
+    <div class="film_nodes"><span th:text="${film.filmNotes}"></span></div>
+    <div th:text="${film.filmName}" class="film_name"></div>
+    <div th:text="${film.filmStars}" class="film_stars"></div>
+</div>
+
+
+<div th:fragment="bottom" class="bottom">
+    <div class="logo-element"><img src="/film/img/logo.jpeg"/></div>
+    <div class="call-me">
+        <i class="fa fa-wechat fa-2x wechat"></i>
+        <i class="fa fa-qq fa-2x qq"></i>
+        <i class="fa fa-telegram fa-2x telegram"></i>
+        <i class="fa fa-heart fa-2x alipay"></i>
+        <i class="fa fa-paypal fa-2x wxpay"></i>
+    </div>
+    <div class="about-me" >Copyright © 2019-2019 by HayesLin Thanks jisudhw.com</div>
+    <!--        <div class="call-me-layui-icon" style="display: none;"><img src="/film/img/156.jpg" th:src="@{/film/img/156.jpg}"></div>-->
+</div>
+<div th:fragment="footer">
+    <script src="/lib/js/jquery.min.js" th:src="@{/lib/js/jquery.min.js}"></script>
+<!--    <script src="/lib/js/lazyload.js" th:src="@{/lib/js/lazyload.js}"></script>-->
+    <script src="/lib/lazyload/jquery.lazyload.js" th:src="@{/lib/lazyload/jquery.lazyload.js}"></script>
+    <script src="/lib/lazyload/jquery.scrollstop.js" th:src="@{/lib/lazyload/jquery.scrollstop.js}"></script>
+    <script src="/film/js/index.js" th:src="@{/film/js/index.js}"></script>
+</div>
+</html>

@@ -1,0 +1,15 @@
+server:
+  port: 8080
+spring:
+  resources:
+    static-locations: classpath:/static/
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/movies?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
+    username: user
+    password: pswd

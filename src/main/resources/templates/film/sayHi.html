@@ -1,0 +1,35 @@
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<title></title>
+<head th:include="film/include :: header"/>
+<body style="overflow-x: hidden;">
+<div th:replace="film/include :: navigation_bar"></div>
+<div class="append">
+    <hr class="layui-bg-orange"/>
+    <span>求片 OR 留言</span>
+    <hr class="layui-bg-orange"/>
+    <form style="text-align: center;" action="/about/sendMail" method="post">
+        <textarea required="required" name="mail"></textarea>
+        <input type="submit" value="留言,嗖♫♡↗"/>
+    </form>
+    <hr class="layui-bg-orange"/>
+    <span>Call我 OR 交友</span>
+    <hr class="layui-bg-orange"/>
+        <div style="text-align: center">
+            <img src="/film/img/180.jpg" style="width: 200px;margin: 0 10% 0 10%;"/>
+            <img src="/film/img/181.jpg" style="width: 200px;margin: 0 10% 0 10%;"/>
+        </div>
+    <hr class="layui-bg-orange"/>
+    <span>赞助 OR 买单</span>
+    <hr class="layui-bg-orange"/>
+        <div style="text-align: center">
+            <img src="/film/img/158.jpg" style="width: 200px;margin: 0 10% 0 10%;"/>
+            <img src="/film/img/159.jpg" style="width: 200px;margin: 0 10% 0 10%;"/>
+        </div>
+    <hr class="layui-bg-orange"/>
+    <span>&nbsp;&nbsp;</span>
+    <hr class="layui-bg-orange"/>
+</div>
+<div th:replace="film/include :: footer"></div>
+<div th:replace="film/include :: bottom"></div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<title th:text="'Hayes影院@'+${#strings.replace(column,'%','')}"></title>
+<head th:include="film/include :: header"/>
+<body style="overflow-x: hidden;">
+<div th:replace="film/include :: navigation_bar"></div>
+<input value="150" type="hidden" id="total_count"/>
+<div class="bady">
+    <input type="hidden" th:value="${totalCount}" id="totalCount"/>
+    <ul>
+        <li th:each="film: ${filmCol}" style="display:inline;position: relative; ">
+            <div class="film">
+                <a th:href="'/media/watch/'+${film.uuid}" target="_blank" th:title="${film.filmNr}">
+                    <img th:attr = "data-original=${film.filmPic}" class="lazyload" />
+                </a>
+                <div th:include="film/include :: film-info"></div>
+            </div>
+        </li>
+    </ul>
+</div>
+<div id="page_index">
+    <a th:href="@{'?currentPage='+${pageInfo.getFirstPage()}+ '&amp;wd='+ ${wd}}" class="first-page">首页</a>
+    <a th:if="${pageInfo.hasPreviousPage()} == true" th:href="@{'?currentPage='+${pageInfo.getPrePage()} + '&amp;wd='+ ${wd}}" class="prev-page">◀ </a>
+    <a th:href="@{'?currentPage=' + ${i} + '&amp;wd='+ ${wd}}" th:each="i :${#numbers.sequence(pageInfo.firstPage, pageInfo.lastPage)}" th:text="  ${i}" th:class="${pageInfo.getPageNumber() == i}?'page-item active':'page-item' "></a>
+    <a th:if="${pageInfo.hasNextPage()} == true" th:href="@{'?currentPage='+${pageInfo.getNextPage()} + '&amp;wd='+ ${wd}}" class="next-page">▶ ️</a>
+    <a th:href="@{'?currentPage='+${pageInfo.getLastPage()} + '&amp;wd='+ ${wd}}" class="last-page">尾页</a>
+</div>
+<div th:replace="film/include :: bottom"></div>
+<div th:replace="film/include :: footer"></div>
+<script>
+    $("img").lazyload({
+        effect: "slideDown", // 载入使用何种效果
+        // effect(特效),值有show(直接显示),fadeIn(淡入),slideDown(下拉)等,常用fadeIn
+        placeholder : "/film/img/err-img.gif", //用图片提前占位
+    });
+</script>
+</body>
+</html>

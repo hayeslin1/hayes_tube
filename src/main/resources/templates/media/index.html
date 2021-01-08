@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<title>Hayes影院@首页</title>
+<head th:include="film/include :: header"/>
+<body style="overflow-x: hidden;">
+<div th:replace="film/include :: navigation_bar" ></div>
+
+<div class="bady">
+    <div class="nav_line">
+        <hr class="layui-bg-orange"/>
+        <span>内地综艺</span>
+        <span style="float: right;cursor: pointer;"><a href="/media/column/ndzy">更多 >></a></span>
+        <hr class="layui-bg-orange"/>
+    </div>
+    <ul class="owl_wrap">
+        <li th:each="film: ${filmNdzy}" style="display:inline;position: relative; ">
+            <div class="film">
+                <a th:href="'/media/watch/'+${film.uuid}" target="_blank" th:title="${film.filmNr}">
+                    <img th:attr = "data-original=${film.filmPic}" class="lazyload" />
+                </a>
+                <div th:include="film/include :: film-info"></div>
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="bady">
+    <div class="nav_line">
+        <hr class="layui-bg-orange"/>
+        <span>港台综艺</span>
+        <span style="float: right;cursor: pointer;"><a href="/media/column/gtzy">更多 >></a></span>
+        <hr class="layui-bg-orange"/>
+    </div>
+    <ul class="owl_wrap">
+        <li th:each="film: ${filmGtzy}" style="display:inline;position: relative; ">
+            <div class="film">
+                <a th:href="'/media/watch/'+${film.uuid}" target="_blank" th:title="${film.filmNr}">
+                    <img th:attr = "data-original=${film.filmPic}" class="lazyload" />
+                </a>
+                <div th:include="film/include :: film-info"></div>
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="bady">
+    <div class="nav_line">
+        <hr class="layui-bg-orange"/>
+        <span>日韩综艺</span>
+        <span style="float: right;cursor: pointer;"><a href="/media/column/rhzy">更多 >></a></span>
+        <hr class="layui-bg-orange"/>
+    </div>
+    <ul class="owl_wrap">
+        <li th:each="film: ${filmRhzy}" style="display:inline;position: relative; ">
+            <div class="film">
+                <a th:href="'/media/watch/'+${film.uuid}" target="_blank" th:title="${film.filmNr}">
+                    <img th:attr = "data-original=${film.filmPic}" class="lazyload" />
+                </a>
+                <div th:include="film/include :: film-info"></div>
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="bady">
+    <div class="nav_line">
+        <hr class="layui-bg-orange"/>
+        <span>欧美综艺</span>
+        <span style="float: right;cursor: pointer;"><a href="/media/column/omzy">更多 >></a></span>
+        <hr class="layui-bg-orange"/>
+    </div>
+    <ul class="owl_wrap">
+        <li th:each="film: ${filmOmzy}" style="display:inline;position: relative; ">
+            <div class="film">
+                <a th:href="'/media/watch/'+${film.uuid}" target="_blank" th:title="${film.filmNr}">
+                    <img th:attr = "data-original=${film.filmPic}" class="lazyload" />
+                </a>
+                <div th:include="film/include :: film-info"></div>
+            </div>
+        </li>
+    </ul>
+</div>
+<div th:replace="film/include :: bottom"></div>
+<div th:replace="film/include :: footer"></div>
+<script>
+    $("img").lazyload({
+        effect: "slideDown", // 载入使用何种效果
+        // effect(特效),值有show(直接显示),fadeIn(淡入),slideDown(下拉)等,常用fadeIn
+        placeholder : "/film/img/err-img.gif", //用图片提前占位
+    });
+</script>
+</body>
+</html>

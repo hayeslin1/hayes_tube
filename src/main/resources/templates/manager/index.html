@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<title>Hayes影院@后台管理页面</title>
+<head th:include="film/include :: header"/>
+<body style="overflow-x: hidden;">
+<div th:replace="film/include :: navigation_bar" ></div>
+
+
+<div>
+    <table id="demo" lay-filter="test"></table>
+
+</div>
+
+
+
+<!--<div th:replace="film/include :: bottom"></div>-->
+<div th:replace="film/include :: footer"></div>
+<script th:src="@{/layui-2.4.5/layui.all.js}" ></script>
+<script th:src="@{/film/js/manager.js}" ></script>
+<script>
+    $("img").lazyload({
+        effect: "slideDown", // 载入使用何种效果
+        // effect(特效),值有show(直接显示),fadeIn(淡入),slideDown(下拉)等,常用fadeIn
+        placeholder : "/film/img/err-img.gif", //用图片提前占位
+    });
+</script>
+</body>
+</html>

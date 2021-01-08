@@ -1,0 +1,44 @@
+#page_index{
+    width: 100%;
+    text-align: center;
+
+}
+.page-item, .first-page,.last-page,.next-page,.prev-page{
+    display: inline-block;
+    width: 37px;
+    height: 25px;
+    line-height: 27px;
+    background-color: transparent;
+    border: 2px solid #6559bc;
+    padding: 0;
+    margin-right: 12px;
+    font-size: 8px;
+    font-weight: 600;
+    color: #6559bc;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease 0s;
+    margin-top: 50px;
+}
+.active{
+    background-color:#6559bc ;
+    color: #fff;
+}
+.page-item:hover{
+    color: red;
+    background: transparent;
+}
+.page-item:after{
+    content: "";
+    width: 0;
+    height: 100%;
+    background: #06d7fc;
+    position: absolute;
+    bottom: -1px;
+    left: -20px;
+    transform: rotate(-15deg);
+    transform-origin: top left;
+    z-index: -1;
+    transition: all 0.5s ease 0s;
+}
+
