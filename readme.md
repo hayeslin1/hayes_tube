@@ -29,8 +29,8 @@
 
 ## tips 
 
-> 改站点最好配合[视频爬虫](https://github.com/hayeslin1/movies_python) , 
+> 本站点最好配合[视频爬虫](https://github.com/hayeslin1/movies_python) , 
 
-> 该地址为`https://github.com/hayeslin1/movies_python` 
+> 视频爬虫地址为`https://github.com/hayeslin1/movies_python` 
 
-> 已同样开源。
+> ![](https://img.shields.io/badge/language-java-orange.svg)
